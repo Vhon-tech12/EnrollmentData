@@ -1,26 +1,207 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-400: #60a5fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-slate-50 text-slate-900 antialiased;
+  @apply dark:bg-slate-950 dark:text-slate-100;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.dark * {
+  scrollbar-color: #334155 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.dark *::-webkit-scrollbar-thumb {
+  background-color: #334155;
+}
+
+/* ============================================ */
+/* GLOBAL DARK MODE OVERRIDES                    */
+/* Auto-converts common light utility classes    */
+/* ============================================ */
+.dark .bg-white {
+  background-color: #0f172a !important;
+}
+
+.dark .bg-slate-50 {
+  background-color: #1e293b !important;
+}
+
+.dark .bg-slate-100 {
+  background-color: #334155 !important;
+}
+
+.dark .border-slate-200 {
+  border-color: #1e293b !important;
+}
+
+.dark .border-slate-100 {
+  border-color: #1e293b !important;
+}
+
+.dark .text-slate-900 {
+  color: #f1f5f9 !important;
+}
+
+.dark .text-slate-800 {
+  color: #e2e8f0 !important;
+}
+
+.dark .text-slate-700 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-slate-600 {
+  color: #cbd5e1 !important;
+}
+
+.dark .text-slate-500 {
+  color: #94a3b8 !important;
+}
+
+.dark .divide-slate-100 > * + * {
+  border-color: #1e293b !important;
+}
+
+.dark .hover\:bg-slate-50:hover {
+  background-color: #1e293b !important;
+}
+
+.dark .hover\:bg-slate-100:hover {
+  background-color: #334155 !important;
+}
+
+/* ============================================ */
+/* LOGIN PAGE — Exempt from dark overrides       */
+/* Keeps the original light card on dark photo   */
+/* ============================================ */
+.dark .login-page .bg-white {
+  background-color: #ffffff !important;
+}
+
+.dark .login-page .bg-white\/95 {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.dark .login-page .text-slate-900 {
+  color: #0f172a !important;
+}
+
+.dark .login-page .text-slate-800 {
+  color: #1e293b !important;
+}
+
+.dark .login-page .text-slate-700 {
+  color: #334155 !important;
+}
+
+.dark .login-page .text-slate-600 {
+  color: #475569 !important;
+}
+
+.dark .login-page .text-slate-500 {
+  color: #64748b !important;
+}
+
+.dark .login-page .text-slate-400 {
+  color: #94a3b8 !important;
+}
+
+.dark .login-page .bg-slate-50 {
+  background-color: #f8fafc !important;
+}
+
+.dark .login-page .bg-slate-100 {
+  background-color: #f1f5f9 !important;
+}
+
+.dark .login-page .border-slate-200 {
+  border-color: #e2e8f0 !important;
+}
+
+.dark .login-page .border-slate-300 {
+  border-color: #cbd5e1 !important;
+}
+
+.dark .login-page .divide-slate-100 > * + * {
+  border-color: #f1f5f9 !important;
+}
+
+.dark .login-page .hover\:bg-slate-100:hover {
+  background-color: #f1f5f9 !important;
+}
+
+.dark .login-page input,
+.dark .login-page select,
+.dark .login-page textarea {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* ============================================ */
+/* KEYFRAME ANIMATIONS                           */
+/* ============================================ */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.2s ease-out;
 }
